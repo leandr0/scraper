@@ -7,25 +7,14 @@ import sys
 import requests
 import regex
 import sys
-#filename = sys.argv[1]
+import time
+import random
 
-url = 'https://www.linkedin.com/search/results/people/?facetGeoRegion=%5B%22es%3A0%22%2C%22mx%3A0%22%2C%22ar%3A0%22%2C%22co%3A0%22%5D&facetIndustry=%5B%22134%22%2C%2234%22%5D&keywords=Exportar&origin=FACETED_SEARCH'
-path = os.path.join('folder_name', 'file_name')
-
-print('Path >>> '+path)
-print('USER >>>> '+ os.environ.get('USER'))
-print(sys.prefix)
-
-print('Separated path >>> ' + os.sep)
-
-
-#print(filename)
-
-li_at = 'AQEDAQHDpq0AQZcRAAABaEzYhOEAAAFolV5Lak0AWNhmUfBoMdkFlssTJXutAP2ZX-SOjFIrja5yFrrgBBe0-4Phem6uR42zOe_dPbHR35orfn9WVQAG7z5a4Hz5k7zj25FU6pwmfXeMs5StghT5lKgQ'
+li_at = 'AQEDAQHDpq0EVIPIAAABbAHq-rYAAAFsSljYZE4AXjZ7Bmpk2pHMMqGlx-O3iozxKCbZquK6aSjG98q9rYvqVLmztHUC-huW-xIK2lq_8WuvvRlpbvwARU84cuSyR7vpcp15pOeA20jZ3F86Z7Fvytmj'
 
 os.environ["LI_AT"] = li_at
 
-os.environ["PATH"] = '$PATH:/Users/digitallam/workspace/'
+li_at = os.environ["LI_AT"]
 
 cookies = {
     'bcookie': 'v=2&d91f4901-af8f-416e-8a08-732acb42b47d',
@@ -57,25 +46,27 @@ headers = {
     'TE': 'Trailers',
 }
 
-#NB. Original query string below. It seems impossible to parse and
-#reproduce query strings 100% accurately so the one below is given
-#in case the reproduced version is not "correct".
-# response = requests.get('https://www.linkedin.com/search/results/people/?facetGeoRegion=%5B%22es%3A0%22%2C%22mx%3A0%22%2C%22ar%3A0%22%2C%22co%3A0%22%5D&facetIndustry=%5B%22134%22%2C%2234%22%5D&keywords=Exportar&origin=FACETED_SEARCH&page=2', headers=headers, cookies=cookies)
-
-
-found = True
-i = 1
-while (found and (i <= 10) ) :
-    params = (
-            ('facetGeoRegion', '["es:0"]'),
-            ('facetIndustry', '["134","34"]'),
-            ('keywords', 'Exportar'),
-            ('origin', 'FACETED_SEARCH'),
-            ('page', i),
-        )
-    http_request = requests.get('https://www.linkedin.com/search/results/people/', headers=headers, params=params, cookies=cookies)
-    if http_request.status_code != 200:
-        found = False
-    else:
-        regex.main(http_request.text)   
-    i += 1
+titles = ["CXO", "COO", "Exporter Manager", "Director", "President", "Chairman", "CEO"]
+t_lenght =  len(titles)
+t = 0
+while (t < 1) :#t_lenght) :
+    found = True
+    i = 1
+    print("Pesquisando com o titulo : [ "+titles[t]+" ]")
+    while (found and (i <= 1) ) :
+        params = (
+                    ('facetGeoRegion', '["es:0"]'), 
+                    ('facetIndustry', '["142","66","63","34","148","22","65","116","134","23"]'), 
+                                ('keywords', titles[t]),
+                    ('origin', 'FACETED_SEARCH'),
+                    ('page', i),
+                )
+        print("+ Acessando página : [ "+ str(i) +" ]")
+        http_request = requests.get('https://www.linkedin.com/search/results/people/', headers=headers, params=params, cookies=cookies)
+        if http_request.status_code != 200:
+            found = False
+        else:
+            regex.main(http_request.text)
+        #time.sleep(random.randint(2,10))   
+        i += 1
+    t += 1

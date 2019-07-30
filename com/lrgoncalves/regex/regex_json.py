@@ -2,23 +2,18 @@
 #!/usr/bin/python3
 
 import re
-import sys
-import data_access
-#filename = sys.argv[1]
+import regex_personal_information
 
-
-#AQEDAQHDpq0AQZcRAAABaEzYhOEAAAFolV5Lak0AWNhmUfBoMdkFlssTJXutAP2ZX-SOjFIrja5yFrrgBBe0-4Phem6uR42zOe_dPbHR35orfn9WVQAG7z5a4Hz5k7zj25FU6pwmfXeMs5StghT5lKgQ
-
-def parse(filename):
+def parse(profile,filename):
 
     with open(filename, 'r') as content_file:
         txt = content_file.read()
 
     re0='\':\s+u\"'
     re1='\':\s+u\''
-    re2=',\s+\''	# Non-greedy match on filler
+    re2=',\s+\''	
     re3='{\''
-    re4='\':'	# Uninteresting: var
+    re4='\':'	
     re5='u\''
     re6='\":\s*\''
     re7='\'}'
@@ -82,7 +77,7 @@ def parse(filename):
     with open(filename, "w") as f:
         f.write(txt)
 
-    #data_access.insert(txt)
+    regex_personal_information.parse(profile,filename)
 
     
 
