@@ -47,14 +47,14 @@ def parse(profile,filename):
             json = replace_json(json,'$headline', head_line)
             json = replace_json(json,'$profile', 'https://www.linkedin.com/in/'+profile)
             json = replace_json(json,'$hash', hashlib.sha512(profile.encode()).hexdigest())
-            json = replace_json(json,'$data', data)
+            json = replace_json(json,'$data', str(data))
             
             print("+++ JSON : [ "+json+" ]")  
             
             data_access.insert(json)
             
     except Exception as error :
-        print("invalid json: %s" % error)
+        print("[regex_personal_information.py#parse] >> invalid json: %s" % error)
         pass
 
 def find_personal_info(txt):

@@ -36,5 +36,10 @@ location found >>  Madrid Area Spain
 name found >>  Hectorvicente Castro Moreno
 phone found >> None
 
+python -m pip install kivy
 
 
+CouchDB vs Cassandra
+
+
+./mongoexport --db linkedin --collection profiles --fields company,email,location,name,phone,headline,profile,country  --type=csv  --out /data/dump/linkedin-country.csv

@@ -49,24 +49,24 @@ headers = {
 titles = ["CXO", "COO", "Exporter Manager", "Director", "President", "Chairman", "CEO"]
 t_lenght =  len(titles)
 t = 0
-while (t < 1) :#t_lenght) :
+while (t < 1) : #t_lenght) :
     found = True
     i = 1
-    print("Pesquisando com o titulo : [ "+titles[t]+" ]")
+    print("Searching by position title : [ "+titles[t]+" ]")
     while (found and (i <= 1) ) :
         params = (
-                    ('facetGeoRegion', '["es:0"]'), 
+                    ('facetGeoRegion', '["es:0","fr:0","ec:0","cl:0","mx:0","pe:0","pt:0","br:0"]'), 
                     ('facetIndustry', '["142","66","63","34","148","22","65","116","134","23"]'), 
-                                ('keywords', titles[t]),
+                                ('title', titles[t]),
                     ('origin', 'FACETED_SEARCH'),
                     ('page', i),
                 )
-        print("+ Acessando página : [ "+ str(i) +" ]")
+        print("+ Accessing page : [ "+ str(i) +" ]")
         http_request = requests.get('https://www.linkedin.com/search/results/people/', headers=headers, params=params, cookies=cookies)
         if http_request.status_code != 200:
             found = False
         else:
             regex.main(http_request.text)
-        #time.sleep(random.randint(2,10))   
+        time.sleep(random.randint(2,4))   
         i += 1
     t += 1

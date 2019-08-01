@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/python3
-
+import sys
 import re
 import regex_personal_information
 
@@ -87,3 +87,6 @@ def hextranslate(s):
                 realIdx = i*2
                 res = res + chr(int(s[realIdx:realIdx+2],16))
         return res
+
+if __name__== "__main__":
+  parse(sys.argv[1],sys.argv[2])

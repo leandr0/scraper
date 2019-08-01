@@ -10,10 +10,13 @@ def insert(json_profile):
     
         profiles_col = linkedin_db["profiles"]
     
+        #print("json_validator")
         json_valid = json_validator(json_profile)
         
-        data = json.loads(str(json_profile))
-        print("Inserting" + data)
+        #print("json_validator#json_valid >> " + json_valid)
+        data = json.loads(json_profile)
+        
+        #print("Inserting" + data)
         if json_valid:
             profiles_col.insert(data)
             
@@ -27,5 +30,5 @@ def json_validator(data):
         json.loads(data)
         return True
     except ValueError as error:
-        print("invalid json: %s" % error)
+        print("[data_access.py#json_validator] >> invalid json: %s" % error)
         return False

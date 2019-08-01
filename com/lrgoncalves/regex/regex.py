@@ -25,6 +25,7 @@ def main(html):
                    #time.sleep(random.randint(1,5)) 
                    print("++ Acessando perfil : [ "+ line +" ]")
                    os.system('/usr/local/bin/scrapeli --user='+line+' > '+'profiles/'+line+'.json')
+                   os.system('cp profiles/'+line+'.json profiles/'+line+'_original.json' )
                    regex_json.parse(line,'profiles/'+line+'.json')
                    content_file = open('profiles/'+line+'.json', 'r')
                    txt = content_file.read()
