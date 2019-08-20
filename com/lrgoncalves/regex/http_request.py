@@ -49,13 +49,13 @@ headers = {
 titles = ["CXO", "COO", "Exporter Manager", "Director", "President", "Chairman", "CEO"]
 t_lenght =  len(titles)
 t = 0
-while (t < 1) : #t_lenght) :
+while (t < t_lenght) :
     found = True
     i = 1
     print("Searching by position title : [ "+titles[t]+" ]")
-    while (found and (i <= 1) ) :
+    while (found and (i <= 10) ) :
         params = (
-                    ('facetGeoRegion', '["es:0","fr:0","ec:0","cl:0","mx:0","pe:0","pt:0","br:0"]'), 
+                    ('facetGeoRegion', '["es:0","fr:0","ec:0","cl:0","ar:0","uy:0","pt:0","br:0"]'), 
                     ('facetIndustry', '["142","66","63","34","148","22","65","116","134","23"]'), 
                                 ('title', titles[t]),
                     ('origin', 'FACETED_SEARCH'),

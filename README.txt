@@ -43,3 +43,15 @@ CouchDB vs Cassandra
 
 
 ./mongoexport --db linkedin --collection profiles --fields company,email,location,name,phone,headline,profile,country  --type=csv  --out /data/dump/linkedin-country.csv
+
+
+ var doc = db.sourceCollection.find({
+        "Timestamp":{
+              $gte:ISODate("2014-09-01T00:00:00Z"),
+              $lt:ISODate("2014-10-01T00:00:00Z")
+        }
+ });
+
+ doc.forEach(function(doc){
+    db.targetCollection.insert(doc);
+ })

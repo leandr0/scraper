@@ -18,17 +18,18 @@ def main(html):
     exclude = 'UNKNOWN'
     try:
         i = 0
-        while i < 1:  #len(results):
+        while i < len(results):
             tuple = results[i] 
             line = tuple[2]
             if line != exclude:
-                   #time.sleep(random.randint(1,5)) 
+                   time.sleep(random.randint(2,6)) 
                    print("++ Acessando perfil : [ "+ line +" ]")
                    os.system('/usr/local/bin/scrapeli --user='+line+' > '+'profiles/'+line+'.json')
-                   os.system('cp profiles/'+line+'.json profiles/'+line+'_original.json' )
+                   #EU AMO A VANESSA !!!
+                   #os.system('cp profiles/'+line+'.json profiles/'+line+'_original.json' )
                    regex_json.parse(line,'profiles/'+line+'.json')
-                   content_file = open('profiles/'+line+'.json', 'r')
-                   txt = content_file.read()
+                   #content_file = open('profiles/'+line+'.json', 'r')
+                   #txt = content_file.read()
             i += 1
     except Exception:
         pass
